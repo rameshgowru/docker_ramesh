@@ -7,12 +7,12 @@ pipeline {
         sh 'zip -r archive/abcd.zip * '
       }
     }
-   stage('DeployToStaging') {
+   stage('DeployToRamesBox') {
             when {
                 branch 'master'
             }
      
-    stage('deploy to tmp') {
+    
       steps {
        withCredentials([usernamePassword(credentialsId: 'rameshtest', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     sshPublisher(
@@ -41,7 +41,7 @@ pipeline {
       }
     }
 
-  }
+  
 }
 }
 }
