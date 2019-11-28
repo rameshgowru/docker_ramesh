@@ -31,9 +31,12 @@ pipeline {
                                 ], 
                                 transfers: [
                                     sshTransfer(
-                                        sourceFiles: 'demo/*',
+                                        sourceFiles: '*',
                                         remoteDirectory: '/tmp',
                                         execCommand: 'ls -l /tmp/'
+                                        execCommand: 'ps -ef|grep java'
+                                        execCommand: 'cd /tmp/demo/'
+                                        execCommand: 'ls -lart'
                                     )
                                 ]
                             )
