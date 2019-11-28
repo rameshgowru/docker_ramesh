@@ -34,7 +34,6 @@ pipeline {
                                         sourceFiles: 'demo/**/*',
                                         remoteDirectory: '/tmp',
                                         execCommand: 'ls -l /tmp/ ; pwd ; ps -ef|grep java ; cd /tmp/demo/; ls -lcrt',
-                                        execCommand: 'netstat -anp|grep java'
 
                                     )
                                 ]
