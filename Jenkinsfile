@@ -33,7 +33,7 @@ pipeline {
                                     sshTransfer(
                                         sourceFiles: 'demo',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'ls -l /tmp/demo'
+                                        execCommand: 'ls -l /tmp/'
                                     )
                                 ]
                             )
