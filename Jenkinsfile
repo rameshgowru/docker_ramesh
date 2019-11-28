@@ -4,7 +4,9 @@ pipeline {
     stage('Build') {
       steps {
         echo 'This is to zip all files'
-        sh 'zip -r archive/abcd.zip * '
+        
+         archiveArtifacts artifacts: 'archive/trainSchedule.zip'
+
       }
     }
    stage('DeployToRamesBox') {
