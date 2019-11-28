@@ -1,20 +1,42 @@
 pipeline {
-  agent {
-    docker {
-      image 'maven:latest'
-    }
-
-  }
+  agent any
   stages {
-    stage('Intialization') {
+    stage('Build') {
       steps {
-        echo 'this is testing'
+        echo 'This is to zip all files'
+        sh 'zip -r archive/abcd.zip * '
       }
     }
-
-    stage('build using maven') {
+   stage('DeployToStaging') {
+            when {
+                branch 'master'
+            }
+     
+    stage('deploy to tmp') {
       steps {
-        sh '''maven install
+       withCredentials([usernamePassword(credentialsId: 'rameshtest', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+                    sshPublisher(
+                        failOnError: true,
+                        continueOnError: false,
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'rameshtest',
+                                sshCredentials: [
+                                    username: "$USERNAME",
+                                    encryptedPassphrase: "$USERPASS"
+                                ], 
+                                transfers: [
+                                    sshTransfer(
+                                        sourceFiles: 'archive/abcd.zip',
+                                        removePrefix: 'archive/',
+                                        remoteDirectory: '/tmp',
+                                        execCommand: 'ls -l /tmp/abcd.zip'
+                                    )
+                                ]
+                            )
+                        ]
+                    )
+              
 '''
       }
     }
