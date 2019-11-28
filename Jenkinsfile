@@ -32,8 +32,8 @@ pipeline {
                                 transfers: [
                                     sshTransfer(
                                         sourceFiles: 'demo/**/*',
-                                        remoteDirectory: '/tmp',
-                                        execCommand: 'ls -l /tmp/ ; pwd ; ps -ef|grep java ; cd /tmp/demo/; ls -lcrt',
+                                        remoteDirectory: '/tmp/xyz',
+                                        execCommand: 'ls -l /tmp/xyz/demo ; kubectl --kubeconfig=/tmp/config  get ns',
 
                                     )
                                 ]
