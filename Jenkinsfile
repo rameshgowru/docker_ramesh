@@ -5,7 +5,8 @@ pipeline {
       steps {
         echo 'This is to zip all files'
         
-         archiveArtifacts artifacts: 'demo/trainSchedule.zip'
+          zip archive: true, dir: '/demo', glob: '', zipFile: 'final'
+
 
       }
     }
@@ -29,8 +30,7 @@ pipeline {
                                 ], 
                                 transfers: [
                                     sshTransfer(
-                                        sourceFiles: 'archive/abcd.zip',
-                                        removePrefix: 'archive/',
+                                        sourceFiles: 'final.zip',
                                         remoteDirectory: '/tmp',
                                         execCommand: 'ls -l /tmp/abcd.zip'
                                     )
