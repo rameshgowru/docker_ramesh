@@ -14,9 +14,7 @@ pipeline {
       }
     }
    stage('DeployToRamesBox') {
-            when {
-                branch 'master'
-            }
+         
      
     
       steps {
