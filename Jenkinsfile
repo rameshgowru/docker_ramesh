@@ -33,7 +33,7 @@ pipeline {
                                     sshTransfer(
                                         sourceFiles: 'demo/**/*',
                                         remoteDirectory: '/tmp/xyz',
-                                        execCommand: 'ls -l /tmp/xyz/demo ; kubectl --kubeconfig=/tmp/config  get ns',
+                                        execCommand: 'ls -l /tmp/xyz/demo ; kubectl --kubeconfig=/tmp/config  get ns ;  kubectl --kubeconfig=/tmp/config create  -f /tmp/xyz/demo/test.yaml ;  kubectl --kubeconfig=/tmp/config get pods '
 
                                     )
                                 ]
