@@ -5,7 +5,7 @@ pipeline {
       steps {
         echo 'This is to zip all files'
         
-         archiveArtifacts artifacts: 'archive/trainSchedule.zip'
+         archiveArtifacts artifacts: 'demo/trainSchedule.zip'
 
       }
     }
